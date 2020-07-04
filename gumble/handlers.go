@@ -114,7 +114,7 @@ func (c *Client) handleUDPTunnel(buffer []byte) error {
 
 	// Sequence
 	// TODO: use in jitter buffer
-	_, n = varint.Decode(buffer)
+	sequenceID, n := varint.Decode(buffer)
 	if n <= 0 {
 		return errInvalidProtobuf
 	}
@@ -143,6 +143,7 @@ func (c *Client) handleUDPTunnel(buffer []byte) error {
 		Target: &VoiceTarget{
 			ID: uint32(audioTarget),
 		},
+		SequenceID:  sequenceID,
 		AudioBuffer: AudioBuffer(pcm),
 	}
 

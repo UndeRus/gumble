@@ -78,6 +78,7 @@ type AudioPacket struct {
 	Sender *User
 	Target *VoiceTarget
 
+	SequenceID int64
 	AudioBuffer
 
 	HasPosition bool
